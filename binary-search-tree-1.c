@@ -7,7 +7,7 @@ typedef struct node { /* struct Node에 타입이 다른 데이터들을 그룹�
 	struct node *right; /* 구조체 Node포인터 right를 선언 */ /* 위에서 typedef struct로 선언을 해주지 않았기에 struct를 써줘야함 */
 } Node; /* 구조체 호출용 이름 */
 
-int initializeBST(Node** h);
+int initializeBST(Node** h); /* binary-search-tree를 초기화하는 함수 선언 */
 
 /* functions that you have to implement */
 void inorderTraversal(Node* ptr);	  /* recursive inorder traversal */
@@ -101,7 +101,7 @@ int main()
 	return 1; /* 1을 반환함 */
 }
 
-int initializeBST(Node** h) {
+int initializeBST(Node** h) { /* binary-search-tree를 초기화하는 함수 정의 */
 
 	/* if the tree is not empty, then remove all allocated nodes from the tree*/
 	if(*h != NULL) /* 포인터 headNode가 NULL이 아니면 */
@@ -115,7 +115,7 @@ int initializeBST(Node** h) {
 	return 1; /* 1를 반환함 */
 }
 
-void inorderTraversal(Node* ptr)
+void inorderTraversal(Node* ptr) /* 중위순회하는 함수 정의 */
 {
 	if(ptr) { /* ptr이 ~라면 */
 		inorderTraversal(ptr->left); /* inorderTraversal 함수 호출*/
@@ -124,7 +124,7 @@ void inorderTraversal(Node* ptr)
 	}
 }
 
-void preorderTraversal(Node* ptr)
+void preorderTraversal(Node* ptr) /* 전위순회하는 함수 정의 */
 {
 	if(ptr) { /* ptr이 ~라면 */
 		printf(" [%d] ", ptr->key); /* print */
@@ -133,7 +133,7 @@ void preorderTraversal(Node* ptr)
 	}
 }
 
-void postorderTraversal(Node* ptr)
+void postorderTraversal(Node* ptr) /* 후위순회하는 함수 정의 */
 {
 	if(ptr) { /* ptr이 ~라면 */
 		postorderTraversal(ptr->left); /* postorderTraversal 함수 호출*/
@@ -143,7 +143,7 @@ void postorderTraversal(Node* ptr)
 }
 
 
-int insert(Node* head, int key)
+int insert(Node* head, int key) /* 트리에 노드를 삽입하는 함수 정의 */
 {
 	Node* newNode = (Node*)malloc(sizeof(Node)); /* Node크기만큼을 동적할당한 Node포인터를 Node포인터 newNode에 넣음 */
 	newNode->key = key; /* newNode의 key부분에 key값을 넣음 */
@@ -185,7 +185,7 @@ int insert(Node* head, int key)
 	return 1; /* 1을 반환함 */
 }
 
-int deleteLeafNode(Node* head, int key)
+int deleteLeafNode(Node* head, int key) /* 키를 위해 있는 leaf 노드 삭제하는 함수 정의 */
 {
 	if (head == NULL) { /* head가 빈공간이라면 */
 		printf("\n Nothing to delete!!\n"); /* print */
@@ -222,7 +222,7 @@ int deleteLeafNode(Node* head, int key)
 				free(ptr); /* ptr을 free시킴 */
 			}
 			else { 
-				printf("the node [%d] is not a leaf \n", ptr->key);
+				printf("the node [%d] is not a leaf \n", ptr->key); /* print */
 			}
 			return 1; /* 1을 반환함 */
 		}
@@ -248,7 +248,7 @@ int deleteLeafNode(Node* head, int key)
 	return 1;  /* 1을 반환함 */
 }
 
-Node* searchRecursive(Node* ptr, int key)
+Node* searchRecursive(Node* ptr, int key) /* 노드를 순회해서 탐색하는 함수 정의 */
 {
 	if(ptr == NULL) /* ptr이 빈공간이라면 */
 		return NULL; /* 빈공간을 반환함 */
@@ -262,7 +262,7 @@ Node* searchRecursive(Node* ptr, int key)
 	return ptr; /* ptr을 반환함 */
  
 }
-Node* searchIterative(Node* head, int key)
+Node* searchIterative(Node* head, int key) /* 노드를 순회하지않고 탐색하는 함수 정의 */
 {
 	/* root node */
 	Node* ptr = head->left; /* Node포인터 ptr에 head의 left부분을 넣음 */
@@ -281,7 +281,7 @@ Node* searchIterative(Node* head, int key)
 	return NULL; /* 빈공간을 반환함 */
 }
 
-void freeNode(Node* ptr)
+void freeNode(Node* ptr) /* 노드를 해제하는 함수 정의 */
 {
 	if(ptr) { /* ptr이 ~라면 */
 		freeNode(ptr->left); /* freeNode 함수 실행 */
@@ -290,7 +290,7 @@ void freeNode(Node* ptr)
 	}
 }
 
-int freeBST(Node* head)
+int freeBST(Node* head) /* 트리에 할당된 모든 메모리를 해제하는 함수 정의 */
 {
 
 	if(head->left == head) /* head의 left 부분이 head라면 */
