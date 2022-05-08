@@ -7,7 +7,7 @@ typedef struct node { /* struct Node에 타입이 다른 데이터들을 그룹�
 	struct node *right; /* 구조체 Node포인터 right를 선언 */ /* 위에서 typedef struct로 선언을 해주지 않았기에 struct를 써줘야함 */
 } Node; /* 구조체 호출용 이름 */
 
-int initializeBST(Node** h); /* binary-search-tree를 초기화하는 함수 선언 */
+int initializeBST(Node** h); /*  이중포인터를 매개변수로 하여 binary-search-tree를 초기화하는 함수 선언 */
 
 /* functions that you have to implement */
 void inorderTraversal(Node* ptr);	  /* recursive inorder traversal */
@@ -101,7 +101,7 @@ int main()
 	return 1; /* 1을 반환함 */
 }
 
-int initializeBST(Node** h) { /* binary-search-tree를 초기화하는 함수 정의 */
+int initializeBST(Node** h) { /* 이중포인터를 매개변수로 하여 binary-search-tree를 초기화하는 함수 정의 */
 
 	/* if the tree is not empty, then remove all allocated nodes from the tree*/
 	if(*h != NULL) /* 포인터 headNode가 NULL이 아니면 */
@@ -180,7 +180,7 @@ int insert(Node* head, int key) /* 트리에 노드를 삽입하는 함수 정�
 	/* linking the new node to the parent */
 	if(parentNode->key > key) /* parentNode의 key부분이 key보다 크다면 */
 		parentNode->left = newNode; /* parentNode의 left부분에 newNode를 넣음 */
-	else /* ptr의 key부분이 key라보다 크지 않다면 */
+	else /* ptr의 key부분이 key보다 크지 않다면 */
 		parentNode->right = newNode; /* parentNode의 right부분에 newNode를 넣음 */
 	return 1; /* 1을 반환함 */
 }
@@ -216,7 +216,7 @@ int deleteLeafNode(Node* head, int key) /* 키를 위해 있는 leaf 노드 삭�
 				/* left node case or right case*/
 				if(parentNode->left == ptr) /* parentNode의 left부분이 ptr과 같다면 */
 					parentNode->left = NULL; /* parentNode의 left부분을 빈공간으로 만듦 */
-				else
+				else /* parentNode의 left부분이 ptr과 같지 않다면 */
 					parentNode->right = NULL; /* parentNode의 right부분을 빈공간으로 만듦 */
 
 				free(ptr); /* ptr을 free시킴 */
